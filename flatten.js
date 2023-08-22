@@ -14,7 +14,7 @@ const flatten = (array) => {
   return flatArray;
 };
 
-const assertArraysEqual = function (array1, array2) {
+const assertArraysEqual = function(array1, array2) {
   if (eqArrays(array1, array2)) {
     console.log(
       `✅✅Assertion Passed: ${JSON.stringify(array1)} === ${JSON.stringify(
@@ -30,7 +30,7 @@ const assertArraysEqual = function (array1, array2) {
   }
 };
 
-const eqArrays = function (array1, array2) {
+const eqArrays = function(array1, array2) {
   // check if two arrays are of the same length
   if (array1.length !== array2.length) return false;
   // iterate through each array
