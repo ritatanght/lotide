@@ -1,6 +1,9 @@
-const eqArrays = function (array1, array2) {
+const assertArraysEqual = function (array1, array2) {
   // check if two arrays of the same length
-  if (array1.length !== array2.length) return false;
+  if (array1.length !== array2.length) {
+    console.log("❌❌Assertion Failed: the arrays are of different length");
+    return;
+  }
   console.log("array1:", array1, "array2:", array2);
   // iterate through each array
   for (let i = 0; i < array1.length; i++) {
@@ -17,8 +20,8 @@ const eqArrays = function (array1, array2) {
 };
 
 // Test code
-eqArrays([1, 2, 3], [1, 2, 3]);
-eqArrays([1, 2, 3], [3, 2, 1]);
+assertArraysEqual([1, 2, 3], [1, 2, 3]);
+assertArraysEqual([1, 2, 3], [3, 2, 1]);
 
-eqArrays(["1", "2", "3"], ["1", "2", "3"]);
-eqArrays(["1", "2", "3"], ["1", "2", 3]);
+assertArraysEqual(["1", "2", "3"], ["1", "2", "3"]);
+assertArraysEqual(["1", "2", "3"], ["1", "2", 3]);
