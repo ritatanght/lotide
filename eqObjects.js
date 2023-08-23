@@ -27,7 +27,6 @@ const eqObjects = function(object1, object2) {
   // return false when both objects do not have the same number of keys
   if (Object.keys(object1).length !== Object.keys(object2).length) return false;
   for (let key in object1) {
-    console.log("comparing ", object1[key], object2[key]);
     // when both values are array, compare with eqArrays()
     if (Array.isArray(object1[key]) && Array.isArray(object2[key])) {
       if (!eqArrays(object1[key], object2[key])) {
