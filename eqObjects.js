@@ -30,13 +30,15 @@ const eqObjects = function(object1, object2) {
     //check if both values are object
     if (typeof object1[key] === "object" && typeof object2[key] === "object") {
       // when both values are array, compare with eqArrays()
-      if (Array.isArray(object1[key]) && Array.isArray(object2[key])) {
-        if (!eqArrays(object1[key], object2[key])) {
-          return false;
-        }
-      }
+      if (
+        Array.isArray(object1[key]) &&
+        Array.isArray(object2[key]) &&
+        !eqArrays(object1[key], object2[key])
+      )
+        return false;
+
       // both values are objects but not arrays, call itself
-      return eqObjects(object1[key], object2[key]);
+      if (!eqObjects(object1[key], object2[key])) return false;
     } else {
       // otherwise compare the primitive values and return false in case of mismatch
       if (object1[key] !== object2[key]) {
@@ -88,4 +90,11 @@ assertEqual(
     { a: { x: { y: 0, z: 1 } }, b: 2 }
   ),
   false
+);
+assertEqual(
+  eqObjects(
+    { a: { x: { y: 2, z: 1 } }, b: 2, c: { d: 2, e: 1 } },
+    { a: { x: { y: 2, z: 1 } }, b: 2, c: { d: 2, e: 1 } }
+  ),
+  true
 );
