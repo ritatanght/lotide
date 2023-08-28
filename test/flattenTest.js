@@ -1,25 +1,15 @@
-const assertArraysEqual = require("../assertArraysEqual");
+const assert = require("chai").assert;
 const flatten = require("../flatten");
-assertArraysEqual(flatten([1, 2, [3, 4], 5, [6]]), [1, 2, 3, 4, 5, 6]);
-assertArraysEqual(
-  flatten([
-    1,
-    2,
-    [
-      [3, 4],
-      [5, [6]],
-    ],
-  ]),
-  [1, 2, 3, 4, 5, 6]
-);
-assertArraysEqual(
-  flatten([
-    "a",
-    "b",
-    [
-      ["c", "de"],
-      ["f", ["gh"]],
-    ],
-  ]),
-  ["a", "b", "c", "de", "f", "gh"]
-);
+
+describe("flatten function", () => {
+  it("returns [1, 2, 3, 4, 5, 6] for [1, 2, [3, 4], 5, [6]]", () => {
+    assert.deepEqual(flatten([1, 2, [3, 4], 5, [6]]), [1, 2, 3, 4, 5, 6]);
+  });
+  it("returns [1, 2, 3, 4, 5, 6] for [ 1, 2, [[3, 4],[5, [6]],] ])", () => {
+    assert.deepEqual(flatten([ 1, 2, [[3, 4],[5, [6]],] ]), [1, 2, 3, 4, 5, 6]);
+  });
+  it('returns ["a", "b", "c", "de", "f", "gh"] for ["a","b",[["c", "de"],["f", ["gh"]]]]', () => {
+    assert.deepEqual(flatten(["a","b",[["c", "de"],["f", ["gh"]]]]), ["a", "b", "c", "de", "f", "gh"]);
+  });
+});
+
