@@ -1,11 +1,31 @@
-const assertEqual = require("../assertEqual");
+const assert = require("chai").assert;
 const tail = require("../tail");
-// TEST CODE
-const words = ["Yo Yo", "Lighthouse", "Labs"];
-const wordsTail = tail(words);
-assertEqual(words.length, 3);
-assertEqual(wordsTail[0], "Lighthouse");
-const words2 = [];
-assertEqual(tail(words2).length, 0);
-const words3 = ["Hello"];
-assertEqual(tail(words3).length, 0);
+
+describe("tail function", () => {
+  it('returns "Lighthouse" for["Yo Yo", "Lighthouse", "Labs"]', () => {
+    const words = ["Yo Yo", "Lighthouse", "Labs"];
+    const wordsTail = tail(words);
+    assert.equal(words.length, 3);
+    assert.equal(wordsTail.length, 2);
+    assert.equal(wordsTail[0], "Lighthouse");
+  });
+  it('returns "Lighthouse" for["Yo Yo", "Lighthouse", "Labs"]', () => {
+    const words = ["Yo Yo", "Lighthouse", "Labs"];
+    const wordsTail = tail(words);
+    assert.equal(words.length, 3);
+    assert.equal(wordsTail.length, 2);
+    assert.equal(wordsTail[0], "Lighthouse");
+  });
+  it("returns [] for an empty array passed", () => {
+    const words = [];
+    const result = tail(words);
+    assert.equal(result.length, 0);
+    assert.deepEqual(result, []);
+  });
+  it('returns [] for single item array ["Hello"]', () => {
+    const words = ["Hello"];
+    const result = tail(words);
+    assert.equal(result.length, 0);
+    assert.deepEqual(result, []);
+  });
+});
